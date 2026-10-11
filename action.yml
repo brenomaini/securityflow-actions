@@ -1,0 +1,36 @@
+name: SecurityFlow scan
+description: Run SAST, SCA and secret scanning in your own CI and send the results to SecurityFlow.
+author: SecurityFlow
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  securityflow-url:
+    description: Base URL of your SecurityFlow instance, without a trailing slash.
+    required: true
+  api-key:
+    description: SecurityFlow ingestion API key with the ingest:sarif scope. Store it as a secret.
+    required: true
+  categories:
+    description: Comma-separated list of scans to run (sast, sca, secret).
+    required: false
+    default: sast,sca,secret
+  scan-mode:
+    description: "full closes findings that disappeared (default branch only); partial only adds."
+    required: false
+    default: full
+  wait:
+    description: Wait for SecurityFlow to finish processing and fail the step if it fails.
+    required: false
+    default: "true"
+
+runs:
+  using: docker
+  image: docker://ghcr.io/brenomaini/securityflow-scan:1
+  env:
+    SF_URL: ${{ inputs.securityflow-url }}
+    SF_API_KEY: ${{ inputs.api-key }}
+    SF_CATEGORIES: ${{ inputs.categories }}
+    SF_SCAN_MODE: ${{ inputs.scan-mode }}
+    SF_WAIT: ${{ inputs.wait }}
