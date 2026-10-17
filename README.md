@@ -41,6 +41,7 @@ Create the key in SecurityFlow under **Settings → Ingestion API Keys** (type *
 | `api-key` | yes | | Ingestion API key (`ingest:sarif` scope) |
 | `categories` | no | `sast,sca,secret` | Scans to run |
 | `scan-mode` | no | `full` | `full` closes findings that disappeared (default branch only); `partial` only adds |
+| `default-branch` | no | the repository's default branch | Needed by SecurityFlow the first time a repository is ingested |
 | `wait` | no | `true` | Fail the step if SecurityFlow fails to process the results |
 
 Pull request runs are accepted and recorded but do not change the official findings.
