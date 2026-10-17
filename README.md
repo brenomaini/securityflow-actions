@@ -43,6 +43,9 @@ Create the key in SecurityFlow under **Settings → Ingestion API Keys** (type *
 | `scan-mode` | no | `full` | `full` closes findings that disappeared (default branch only); `partial` only adds |
 | `default-branch` | no | the repository's default branch | Needed by SecurityFlow the first time a repository is ingested |
 | `wait` | no | `true` | Fail the step if SecurityFlow fails to process the results |
+| `strict` | no | `false` | Fail when a category's module is not enabled for your tenant (by default it is skipped with a warning) |
+
+A category whose module is not enabled for your SecurityFlow tenant (for example Secret Scanning) is skipped with a warning; the job still succeeds. Set `strict: true` to fail instead.
 
 Pull request runs are accepted and recorded but do not change the official findings.
 

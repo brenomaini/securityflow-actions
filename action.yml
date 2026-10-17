@@ -20,6 +20,10 @@ inputs:
     description: "full closes findings that disappeared (default branch only); partial only adds."
     required: false
     default: full
+  strict:
+    description: "Fail when a category cannot be sent because its module is not enabled for your tenant. By default that category is skipped with a warning."
+    required: false
+    default: "false"
   default-branch:
     description: Default branch of the repository. SecurityFlow requires it the first time a repository is ingested.
     required: false
@@ -39,3 +43,4 @@ runs:
     SF_SCAN_MODE: ${{ inputs.scan-mode }}
     SF_DEFAULT_BRANCH: ${{ inputs.default-branch }}
     SF_WAIT: ${{ inputs.wait }}
+    SF_STRICT: ${{ inputs.strict }}
